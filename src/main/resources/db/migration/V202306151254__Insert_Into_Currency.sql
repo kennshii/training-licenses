@@ -1,0 +1,1 @@
+insert into currency values ('USD');

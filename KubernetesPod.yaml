@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: dind
+    image: docker:24.0-dind
+    resources:
+      requests:
+        memory: "50m"
+        cpu: "250m"
+      limits:
+        memory: "2Gi"
+        cpu: "1"
+    securityContext:
+      privileged: true
+  - name: custom-ubuntu
+    image: nexus.tool.mddinternship.com/custom-ubuntu:latest
+    resources:
+      requests:
+        memory: "100m"
+        cpu: "250m"
+      limits:
+        memory: "2Gi"
+        cpu: "1"
+    tty: true
+    securityContext:
+      privileged: true
+  - name: postgres
+    image: postgres:15.3
+    env:
+    - name: POSTGRES_DB
+      value: "training-licenses-db"
+    - name: POSTGRES_USER
+      value: "training-licenses"
+    - name: POSTGRES_PASSWORD
+      value: "TL1cenSe"
+    resources:
+      requests:
+        memory: "50m"
+        cpu: "250m"
+      limits:
+        memory: "2Gi"
+        cpu: "1"
+    tty: true
+    securityContext:
+      privileged: true

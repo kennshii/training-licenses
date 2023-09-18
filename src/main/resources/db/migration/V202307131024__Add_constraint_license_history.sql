@@ -1,0 +1,1 @@
+ALTER TABLE license_history ADD CONSTRAINT license_fk FOREIGN KEY(license_id) REFERENCES license(id);

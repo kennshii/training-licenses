@@ -1,0 +1,1 @@
+insert into request_status(name) values ('REJECTED');
